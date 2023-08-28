@@ -1,0 +1,61 @@
+/*primary color*/
+
+@import url('https://fonts.googleapis.com/css2?family=Tenor+Sans&display=swap');
+:root{
+  --color1: #917f6e;
+  --color2: #efbc98;
+  --color3: #efd2be;
+  --color4: #efe1d1;
+  --color5: #d9ddcd;
+  
+}
+.bg-cream {
+    background-color: var(--color5);
+}
+
+.logo{
+    font-family: 'Tenor Sans', sans-serif;
+}
+
+.girl{
+    margin-top: 40px;
+}
+
+
+/*font*/
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+.bg-yellow-500 {
+    background-color: var(--color1);
+}
+.text-yellow-500 {
+    color: var(--color1);
+}
+.floating { 
+    animation-name: floating; 
+    animation-duration: 3s; 
+    animation-iteration-count: infinite; 
+    animation-timing-function: ease-in-out;
+} 
+@keyframes floating { 
+    0% { transform: translate(0, 0px); } 
+    50% { transform: translate(0, 8px); } 
+    100% { transform: translate(0, -0px); }  
+} 
+.floating-4 { 
+    animation-name: floating; 
+    animation-duration: 4s; 
+    animation-iteration-count: infinite; 
+    animation-timing-function: ease-in-out;
+} 
+@keyframes floating-4 { 
+    0% { transform: translate(0, 0px); } 
+    50% { transform: translate(0, 8px); } 
+    100% { transform: translate(0, -0px); }  
+}
+.text-darken {
+    color: var(--color2);
+}
+
