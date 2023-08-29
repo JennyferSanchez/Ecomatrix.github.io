@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-include("coneccion.php");
+include("../coneccion/coneccion.php");
 include("enviar_correo.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {

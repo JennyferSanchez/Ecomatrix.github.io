@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("coneccion.php");
+include("../coneccion/coneccion.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST["email"];
@@ -37,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>EcoMatrix</title>
 
-  <link rel="stylesheet" href="../css/vertical-layout-light/style.css">
+  <link rel="stylesheet" href="../../css/vertical-layout-light/style.css">
   <!-- endinject -->
   <link rel="shortcut icon" href="../img/logo_eco.ico" />
 </head>
@@ -50,7 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           <div class="col-lg-4 mx-auto">
             <div class="auth-form-light text-left py-5 px-4 px-sm-5">
               <div class="brand-logo">
-                <a href="../index.html"><img class="logo" src="../img/EcoMatrix (1).png" alt="logo"></a>
+                <a href="../index.html"><img class="logo" src="../../../img/EcoMatrix (1).png" alt="logo"></a>
                 
               </div>
               <h4>Hola! vamos a empezar</h4>
@@ -63,7 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                   <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" name="password" placeholder="Password">
                 </div>
                 <div class="mt-3">
-                <input class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" type="submit"  >
+                <input class="boton btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" type="submit"  >
                 </div>
                 <div class="my-2 d-flex justify-content-between align-items-center">
                   <div class="form-check">

@@ -1,26 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>EcoMatrix</title>
-  <link rel="stylesheet" href="../../vendors/feather/feather.css">
-  <link rel="stylesheet" href="../../vendors/ti-icons/css/themify-icons.css">
-  <link rel="stylesheet" href="../../vendors/css/vendor.bundle.base.css">
-  <link rel="stylesheet" href="../../vendors/datatables.net-bs4/dataTables.bootstrap4.css">
-  <link rel="stylesheet" href="../../vendors/ti-icons/css/themify-icons.css">
-  <link rel="stylesheet" type="text/css" href="../../js/select.dataTables.min.css">
-  <link rel="stylesheet" href="../../css/vertical-layout-light/style.css">
-  <link rel="shortcut icon" href="../../../img/logo_eco.ico" />
-</head>
-<body>
-  <div class="container-scroller">
-    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+<nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
       <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-        <a class="navbar-brand brand-logo mr-5" href="../../index.php"><img src="../../../img/logo_gran.png" class="mr-2" alt="logo"/></a>
-        <a class="logo navbar-brand brand-logo-mini" href="../../index.php"><img src="../../../img/logo_mini.png" class="mr-2" alt="logo"/></a>
+        <a class="navbar-brand brand-logo mr-5" href="../index/index.php"><img src="../../../img/logo_gran.png" class="mr-2" alt="logo"/></a>
+        <a class="navbar-brand brand-logo-mini" href="../index/index.php"><img src="../../../img/logo_mini.png" alt="logo"/></a>
       </div>
       <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
         <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -113,7 +94,7 @@
         </button>
       </div>
     </nav>
-
+    <!-- partial -->
     <div class="container-fluid page-body-wrapper">
       <!-- partial:partials/_settings-panel.html -->
       <div class="theme-setting-wrapper">
@@ -281,12 +262,14 @@
               </li>
             </ul>
           </div>
+          <!-- chat tab ends -->
         </div>
       </div>
+
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <ul class="nav">
           <li class="nav-item">
-            <a class="nav-link" href="index.php">
+            <a class="nav-link" href="../index/index.php">
               <i class="icon-grid menu-icon"></i>
               <span class="menu-title">Dashboard</span>
             </a>
@@ -299,8 +282,8 @@
             </a>
             <div class="collapse" id="ui-basic">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Buttons</a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/dropdowns.html">Dropdowns</a></li>
+                <li class="nav-item"> <a class="nav-link" href="../gestion/aspectos.php">Aspectos</a></li>
+                <li class="nav-item"> <a class="nav-link" href="../gestion/proceso.php">Procesos</a></li>
                 <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Typography</a></li>
               </ul>
             </div>
@@ -387,29 +370,3 @@
           </li>
         </ul>
       </nav>
-
-
-  <!-- plugins:js -->
-  <script src="../../vendors/js/vendor.bundle.base.js"></script>
-  <!-- endinject -->
-  <!-- Plugin js for this page -->
-  <script src="../../vendors/chart.js/Chart.min.js"></script>
-  <script src="../../vendors/datatables.net/jquery.dataTables.js"></script>
-  <script src="../../vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
-  <script src="../../js/dataTables.select.min.js"></script>
-
-  <!-- End plugin js for this page -->
-  <!-- inject:js -->
-  <script src="../../js/off-canvas.js"></script>
-  <script src="../../js/hoverable-collapse.js"></script>
-  <script src="../../js/template.js"></script>
-  <script src="../../js/settings.js"></script>
-  <script src="../../js/todolist.js"></script>
-  <!-- endinject -->
-  <!-- Custom js for this page-->
-  <script src="../../js/dashboard.js"></script>
-  <script src="../../js/Chart.roundedBarCharts.js"></script>
-  <!-- End custom js for this page-->
-</body>
-
-</html>

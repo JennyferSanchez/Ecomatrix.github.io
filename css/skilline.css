@@ -9,6 +9,10 @@
   --color5: #d9ddcd;
   
 }
+
+.btn{
+    background-color: var(--color1);
+}
 .bg-cream {
     background-color: var(--color5);
 }
