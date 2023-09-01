@@ -48,7 +48,7 @@ $result = mysqli_query($conn, $query);
                   <div class="col-md-4">
                     <div class="card-body">
                       <h4 class="card-title">Actividad</h4>
-                      <p class="card-description">ugg</p>
+                      <p class="card-description">Selecciona en la actividad que vas a trabajar</p>
                       <div class="template-demo d-flex mt-2 ">
                         <ul class="horizontal-list">
       
