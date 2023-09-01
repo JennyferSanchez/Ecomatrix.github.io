@@ -77,7 +77,7 @@
                 <i class="ti-settings text-primary"></i>
                 Settings
               </a>
-              <a class="dropdown-item">
+              <a class="dropdown-item" href="../index/cerrar.php">
                 <i class="ti-power-off text-primary"></i>
                 Logout
               </a>
@@ -283,6 +283,7 @@
             <div class="collapse" id="ui-basic">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"> <a class="nav-link" href="../gestion/aspectos.php">Aspectos</a></li>
+
                 <li class="nav-item"> <a class="nav-link" href="../gestion/proceso.php">Procesos</a></li>
                 <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Typography</a></li>
               </ul>

@@ -1,19 +1,24 @@
 <?php
 session_start();
-global $document;
+include("../coneccion/coneccion.php");
+$user_id = $_SESSION["user_id"];
 if (!isset($_SESSION["user_id"])) {
     header("Location: login.php");
     exit();
 }
+if (isset($_GET['id'])) {
+    $btn = $_GET['id'];
+    echo "No se ha seleccionado ningún botón: $btn";
+    $query = "SELECT p.id id, p.nombre nombre, a.nombre act FROM  proceso p  INNER JOIN sector a on a.id=p.id_sector WHERE a.id='$btn'";
+    $result = mysqli_query($conn, $query);
+    
 
-include("../coneccion/coneccion.php");
-$query = "SELECT id, nombre, img FROM sector";
-$result = mysqli_query($conn, $query);
-
-
-
-
-
+} else {
+    $query = "SELECT p.id id, p.nombre nombre, a.nombre act FROM  proceso p  INNER JOIN sector a on a.id=p.id_sector  INNER JOIN usuarios u on u.Actividad=a.id WHERE u.id='$user_id'";
+    $result = mysqli_query($conn, $query);
+}
+$query3 = "UPDATE usuarios SET Actividad= '$btn' WHERE  id = $user_id";
+$result3 = mysqli_query($conn, $query3);
 ?>
 
 
@@ -46,36 +51,43 @@ $result = mysqli_query($conn, $query);
         <div class="content-wrapper">
           <div class="row">
             <div class="col-md-12 grid-margin stretch-card">
-              <div class="card">
-                <div class="row">
-                  <div class="col-md-4">
-                    <div class="card-body">
-                      <h4 class="card-title">Actividad</h4>
-                      <p class="card-description">Selecciona en la actividad que vas a trabajar</p>
-                      <div class="template-demo d-flex mt-2 ">
-                        <ul class="horizontal-list">
-                          <?php
+                <ul>
+
+                        <?php
                             while ($row = mysqli_fetch_assoc($result)) {
-                              $image_blob = $row["img"];
-                              $id_img = $row["id"];
-                              $nom_img = $row["nombre"];
-                              echo "<li class=' list-inline-item mb-4'>";
-                              echo "<a href= 'sub_actividades.php?id=$id_img'><button  class='btn btn-outline-dark'>";
-                                  echo "<img alt='Imagen' class='imagenes rounded' src='data:png;base64," . base64_encode($image_blob) . "' alt='Imagen'>";                           
-                                  echo "<span class='d-inline-block text-left'>";
-                                    echo "<small class='font-weight-light d-block'>SECTOR</small>";
-                                    echo "$nom_img";
-                                  echo "</span>";
-                                echo "</button>";
-                              echo "</li>";
+                                echo "<li class=' list-inline-item mb-4'>";
+                                echo "<div class='card'>";
+                                echo "<div class='card-body'>";
+                                echo "<h4 class='card-title'>{$row['nombre']} </h4>";
+                                echo "<p class='card-description'> </p>";
+                                echo "<div class='table-responsive'>";
+                                echo "<table class='table'>";
+                                $query2 = "SELECT s.id id_sub, s.nombre nombre_s FROM sub_proceso s WHERE s.id_pro='{$row['id']}'";
+                                $result2 = mysqli_query($conn, $query2);
+                                echo "<thead>";
+                                echo "<tr>";
+                                echo "<th>ID</th>";
+                                echo "<th>Nombre</th>";
+                                echo "</tr>";
+                                echo "</thead>";
 
+                                while ($row = mysqli_fetch_assoc($result2)) {
+                                        echo "<tr>";
+                                        echo "<td>{$row['id_sub']}</td>";
+                                        echo "<td>{$row['nombre_s']}</td>";
+                                        echo "</tr>";
+                                    }
+
+                                echo "</tbody>";
+                                echo "</table>";
+                            echo "</div>";
+                        echo "</div>";
+                        echo "</li>";
+    
                             }
-
-
-
-                          ?>
-                        </ul>
-
+    
+                         ?>
+                         </ul>
                       </div>
                     </div>
                   </div>

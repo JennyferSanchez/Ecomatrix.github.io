@@ -19596,6 +19596,20 @@ code {
   }
 }
 
+.imagenes{
+  width: 150px;
+}
+
+.horizontal-list {
+  list-style: none;
+  display: flex;
+  padding: 0;
+}
+
+.horizontal-list li {
+  margin-right: 10px; /* Ajusta el margen entre elementos */
+}
+
 /* Utilities */
 .grid-margin {
   margin-bottom: 2.5rem;
