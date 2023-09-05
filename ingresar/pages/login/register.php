@@ -12,27 +12,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Generar un código de verificación aleatorio
     $verificationCode = mt_rand(100000, 999999);
 
-    $query = "INSERT INTO usuarios ( username, password, email, verified, verification_code) VALUES ('$username', '$password', '$email', 0,   '$verificationCode')";
-    $result = mysqli_query($conn, $query);
+    $query1 = "SELECT email FROM usuarios WHERE email = '$email'";
+    $result1 = mysqli_query($conn, $query1);
 
-    if ($result) {
-        $user_id = mysqli_insert_id($conn);
-        echo "holi";
-        // Enviar el correo electrónico con el código de verificación
-        $emailSent = sendVerificationCode($email, $verificationCode); // Cambia esto
-        if ($emailSent) {
-            $_SESSION["user_id"] = $user_id;
-            header("Location: verificar.php");
-        } else {
-            $error = "Error al enviar el correo de verificación.";
-            echo $error;
-        }
-    } else {
-        $error = "Error al registrar el usuario.";
-        echo $error;
+    if ($result->num_rows > 0){
+      $query = "INSERT INTO usuarios ( username, password, email, verified, verification_code) VALUES ('$username', '$password', '$email', 0,   '$verificationCode')";
+      $result = mysqli_query($conn, $query);
+
+      if ($result) {
+          $user_id = mysqli_insert_id($conn);
+          // Enviar el correo electrónico con el código de verificación
+          $emailSent = sendVerificationCode($email, $verificationCode); // Cambia esto
+          if ($emailSent) {
+              $_SESSION["user_id"] = $user_id;
+              header("Location: verificar.php");
+          } else {
+              $error = "Error al enviar el correo de verificación.";
+              echo $error;
+          }
+      } else {
+          $error = "Error al registrar el usuario.";
+          echo $error;
+      }
+
+    }else{
+      $error = "Correo ya registrado resgitra otro.";
     }
 
-  }
+    }
+
+    
 
 ?>
 <!DOCTYPE html>
@@ -51,9 +60,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <!-- Plugin css for this page -->
   <!-- End plugin css for this page -->
   <!-- inject:css -->
-  <link rel="stylesheet" href="../css/vertical-layout-light/style.css">
+  <link rel="stylesheet" href="../../css/vertical-layout-light/style.css">
   <!-- endinject -->
-  <link rel="shortcut icon" href="../img/logo_eco.ico" />
+  <link rel="shortcut icon" href="../../../img/logo_eco.ico" />
 </head>
 
 <body>
@@ -64,11 +73,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           <div class="col-lg-4 mx-auto">
             <div class="auth-form-light text-left py-5 px-4 px-sm-5">
               <div class="brand-logo">
-              <a href="../index.html"><img class="logo" src="../img/EcoMatrix (1).png" alt="logo"></a>
+              <a href="../../../index.html"><img class="logo" src="../../../img/EcoMatrix (1).png" alt="logo"></a>
               </div>
               <h4>¿Nuevo aqui?</h4>
               <h6 class="font-weight-light">Registrate facil y rapido</h6>
               <form class="pt-3" method="POST" >
+
                 <div class="form-group">
                   <input type="text" class="form-control form-control-lg" name="username" placeholder="username">
                 </div>

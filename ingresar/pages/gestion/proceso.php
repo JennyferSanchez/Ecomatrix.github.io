@@ -2,12 +2,15 @@
 session_start();
 global $document;
 if (!isset($_SESSION["user_id"])) {
-    header("Location: login.php");
+    header("Location: ../login/login.php");
     exit();
 }
 
+$user_id = $_SESSION["user_id"];
+$proy_id = $_SESSION["proy_id"];
+
 include("../coneccion/coneccion.php");
-$query = "SELECT id, nombre, img FROM sector";
+$query = "SELECT s.id id, s.nombre nombre, s.img img FROM sector s INNER JOIN  sector_usu u ON s.id=u.sector  INNER JOIN proyecto p ON p.id= u.id_proy  WHERE p.id= $proy_id   ";
 $result = mysqli_query($conn, $query);
 
 

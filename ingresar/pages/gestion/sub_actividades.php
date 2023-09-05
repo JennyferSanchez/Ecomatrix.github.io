@@ -3,12 +3,11 @@ session_start();
 include("../coneccion/coneccion.php");
 $user_id = $_SESSION["user_id"];
 if (!isset($_SESSION["user_id"])) {
-    header("Location: login.php");
+    header("Location: ../login/login.php");
     exit();
 }
 if (isset($_GET['id'])) {
     $btn = $_GET['id'];
-    echo "No se ha seleccionado ningún botón: $btn";
     $query = "SELECT p.id id, p.nombre nombre, a.nombre act FROM  proceso p  INNER JOIN sector a on a.id=p.id_sector WHERE a.id='$btn'";
     $result = mysqli_query($conn, $query);
     
@@ -19,6 +18,20 @@ if (isset($_GET['id'])) {
 }
 $query3 = "UPDATE usuarios SET Actividad= '$btn' WHERE  id = $user_id";
 $result3 = mysqli_query($conn, $query3);
+
+$query2 = "SELECT id, nombre FROM proceso WHERE id_sector=$btn";
+$result2 = mysqli_query($conn, $query2);
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  $nombre = $_POST["nom"];
+  $proceso = $_POST["pro"];
+
+
+  $query4 = "INSERT INTO sub_proceso ( nombre, id_pro) VALUES ('$nombre', $pro)";
+  $result4 = mysqli_query($conn, $query4);
+
+
+}
+
 ?>
 
 
@@ -47,13 +60,38 @@ $result3 = mysqli_query($conn, $query3);
         include "../nav/nav2.php";
     ?>
       <!-- partial -->
-      <div class="main-panel">          
+      <div class="main-panel">        
         <div class="content-wrapper">
           <div class="row">
-            <div class="col-md-12 grid-margin stretch-card">
-                <ul>
-
+            <div class="col-md-4 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Procesos</h4>
+                  <p class="card-description">
+                    si no encuentra algun Sub Proceso agregelo
+                  </p>
+                  <form class="forms-sample">
+                    <div class="form-group">
+                      <label for="sub_c">Proceso</label>
+                      <select class="form-control" name="pro">
                         <?php
+                            while ($row = mysqli_fetch_assoc($result2)) {
+                                echo "<option value='{$row['id']}'>{$row['nombre']}</option>";
+                            }
+                        ?>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="nom">Sub proceso</label>
+                      <input type="text" class="form-control" name="nom" >
+                    </div>
+                    <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                    <button class="btn btn-light">Cancel</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+            <?php
                             while ($row = mysqli_fetch_assoc($result)) {
                                 echo "<li class=' list-inline-item mb-4'>";
                                 echo "<div class='card'>";
@@ -79,23 +117,26 @@ $result3 = mysqli_query($conn, $query3);
                                     }
 
                                 echo "</tbody>";
-                                echo "</table>";
-                            echo "</div>";
-                        echo "</div>";
+                                echo "</table>";    
                         echo "</li>";
     
                             }
     
                          ?>
                          </ul>
-                      </div>
-                    </div>
+              
                   </div>
                 </div>
               </div>
             </div>
+   
+    
+
+                        
+            </div>
           </div>
         </div>
+
         <!-- content-wrapper ends -->
         <!-- partial:../../partials/_footer.html -->
         <footer class="footer">

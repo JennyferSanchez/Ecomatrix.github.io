@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $query = "UPDATE usuarios SET verified = 1 WHERE id = $user_id";
         $result = mysqli_query($conn, $query);
         if ($result) {
-            header("Location: index.php");
+            header("Location: ../index/dirigir.php");
         } else {
             $error = "Error al verificar el código.";
         }

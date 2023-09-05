@@ -5,23 +5,15 @@
 
 session_start();
 include("../coneccion/coneccion.php");
-$query = "SELECT a.id id, f.nombre factor, a.nombre nombre FROM aspectos a INNER JOIN factor_ambiental f on a.id_factor=f.id ";
+include("../index/variable.php");
+$user_id = $_SESSION["user_id"];
+$proy_id = $_SESSION["proy_id"];
+$query = "SELECT r.id, r.id_proy, a.nombre aspecto,  s.nombre id_subproseso, r.magnitud, r.Importancia, r.ma, r.im FROM registro r INNER JOIN aspectos a ON a.id=r.aspecto INNER JOIN sub_proceso s ON s.id=r.id_subproseso WHERE r.id_proy= $proy_id ";
 $result = mysqli_query($conn, $query);
-
-$query2 = "SELECT id , nombre FROM factor_ambiental";
-$result2 = mysqli_query($conn, $query2);
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  $nombre = $_POST["nom"];
-  $factor = $_POST["sub_f"];
-  $desc= $_POST["dec"];
+$user_id = $_SESSION["user_id"];
+$proy_id = $_SESSION["proy_id"];
 
 
-  $query3 = "INSERT INTO aspectos ( nombre, id_factor, descripcion) VALUES ('$nombre', $factor, '$desc')";
-  $result3 = mysqli_query($conn, $query3);
-
-
-}
 
 ?>
 
@@ -54,38 +46,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
  <div class="main-panel">        
         <div class="content-wrapper">
           <div class="row">
-            <div class="col-md-4 grid-margin stretch-card">
+            <div class="col-md-12 grid-margin stretch-card">
               <div class="card">
-                <div class="card-body">
-                  <h4 class="card-title">Aspectos</h4>
-                  <p class="card-description">
-                    si no encuentra algun aspecto agregelo
-                  </p>
-                  <form class="forms-sample">
-                    <div class="form-group">
-                      <label for="sub_c">Sub componente</label>
-                      <select class="form-control" id="sub_f">
-                        <?php
-                          while ($row = mysqli_fetch_assoc($result2)) {
-                              echo "<option value='{$row['id']}'>{$row['nombre']}</option>";
-                          }
-                        ?>
-                      </select>
-                    </div>
-                    <div class="form-group">
-                      <label for="nom">Nombre</label>
-                      <input type="text" class="form-control" name="nom" >
-                    </div>
-                    <div class="form-group">
-                      <label for="dec">Descripcion</label>
-                      <textarea class="form-control" name="dec" rows="4"></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                    <button class="btn btn-light">Cancel</button>
-                  </form>
-                </div>
-              </div>
-            </div>
               <div class="card">
                 <div class="card-body">
                   <h4 class="card-title">Aspectos</h4>
@@ -96,8 +58,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                       <thead>
                         <tr>
                           <th>ID</th>
-                          <th>Factor</th>
-                          <th>Nombre</th>
+                          <th>aspecto</th>
+                          <th>Sub_proceso</th>
+                          <th>Magnitud</th>
+                          <th>Impacto</th>
+                          <th>#</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -105,8 +70,38 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                           while ($row = mysqli_fetch_assoc($result)) {
                               echo "<tr>";
                               echo "<td>{$row['id']}</td>";
-                              echo "<td>{$row['factor']}</td>";
-                              echo "<td>{$row['nombre']}</td>";
+                              echo "<td>{$row['aspecto']}</td>";
+                              echo "<td>{$row['id_subproseso']}</td>";
+                              echo "<td>{$row['magnitud']}</td>";
+                              echo "<td>{$row['Importancia']}</td>";
+                              if($row['ma']==1 && $row['im']==1 ){
+                                echo "<td><img  src='../../images/impacto/9.png'></td>";
+                              }elseif($row['ma']==1 && $row['im']==2 ){
+                                echo "<td><img  src='../../images/impacto/8.png' ></td>";
+                              }elseif($row['ma']==1 && $row['im']==3 ){
+                                echo "<td><img  src='../../images/impacto/7.png' ></td>";
+                              }elseif($row['ma']==2 && $row['im']==1 ){
+                                echo "<td><img  src='../../images/impacto/6.png'></td>";
+                              }elseif($row['ma']==2 && $row['im']==2 ){
+                                echo "<td><img  src='../../images/impacto/5.png'></td>";
+                              }elseif($row['ma']==2 && $row['im']==3 ){
+                                echo "<td><img  src='../../images/impacto/4.png'></td>";
+                              }elseif($row['ma']==3 && $row['im']==1 ){
+                                echo "<td><img  src='../../images/impacto/3.png'></td>";
+                              }elseif($row['ma']==3 && $row['im']==2 ){
+                                echo "<td><img  src='../../images/impacto/2.png'></td>";
+                              }elseif($row['ma']==3 && $row['im']==3 ){
+                                echo "<td><img  src='../../images/impacto/1.png'></td>";
+                              }
+
+
+
+
+
+
+
+
+
                               echo "</tr>";
                           }
                           ?>

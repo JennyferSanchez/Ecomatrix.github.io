@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (password_verify($password, $stored_password)) {
             // Contraseña válida, inicio de sesión exitoso
             $_SESSION["user_id"] = $row["id"];
-            header("Location: index.php");
+            header("Location: ../index/dirigir.php");
         } else {
             // Contraseña incorrecta
             $error = "Nombre de usuario o contraseña incorrectos holi.";
@@ -50,17 +50,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           <div class="col-lg-4 mx-auto">
             <div class="auth-form-light text-left py-5 px-4 px-sm-5">
               <div class="brand-logo">
-                <a href="../index.html"><img class="logo" src="../../../img/EcoMatrix (1).png" alt="logo"></a>
+                <a href="../../../index.html"><img class="logo" src="../../../img/EcoMatrix (1).png" alt="logo"></a>
                 
               </div>
               <h4>Hola! vamos a empezar</h4>
               <h6 class="font-weight-light">ingresa para empezar.</h6>
               <form class="pt-3" method="POST">
                 <div class="form-group">
-                  <input type="email" class="form-control form-control-lg" id="exampleInputEmail1" name="email" placeholder="Email">
+                  <input type="email" class="form-control form-control-lg"  name="email" placeholder="Email">
                 </div>
                 <div class="form-group">
-                  <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" name="password" placeholder="Password">
+                  <input type="password" class="form-control form-control-lg"  name="password" placeholder="Password">
                 </div>
                 <div class="mt-3">
                 <input class="boton btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" type="submit"  >
