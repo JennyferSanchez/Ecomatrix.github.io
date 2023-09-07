@@ -6,25 +6,27 @@ if (!isset($_SESSION["user_id"])) {
     header("Location: ../login/login.php");
     exit();
 }
+
 if (isset($_GET['id'])) {
-    $btn = $_GET['id'];
+    $_SESSION["proceso"] = $_GET['id'];
+    $btn = $_SESSION["proceso"];
     $query = "SELECT p.id id, p.nombre nombre, a.nombre act FROM  proceso p  INNER JOIN sector a on a.id=p.id_sector WHERE a.id='$btn'";
-    $result = mysqli_query($conn, $query);
-    
+    $result = mysqli_query($conn, $query);  
 
 } else {
     $query = "SELECT p.id id, p.nombre nombre, a.nombre act FROM  proceso p  INNER JOIN sector a on a.id=p.id_sector  INNER JOIN usuarios u on u.Actividad=a.id WHERE u.id='$user_id'";
     $result = mysqli_query($conn, $query);
 }
-$query3 = "UPDATE usuarios SET Actividad= '$btn' WHERE  id = $user_id";
-$result3 = mysqli_query($conn, $query3);
+
+$btn = $_SESSION["proceso"];
 
 $query2 = "SELECT id, nombre FROM proceso WHERE id_sector=$btn";
 $result2 = mysqli_query($conn, $query2);
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $nombre = $_POST["nom"];
-  $proceso = $_POST["pro"];
-
+  $pro= $_POST["pro"];
+  echo "Holi";
 
   $query4 = "INSERT INTO sub_proceso ( nombre, id_pro) VALUES ('$nombre', $pro)";
   $result4 = mysqli_query($conn, $query4);
@@ -70,7 +72,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                   <p class="card-description">
                     si no encuentra algun Sub Proceso agregelo
                   </p>
-                  <form class="forms-sample">
+                  <form class="forms-sample" method="POST">
                     <div class="form-group">
                       <label for="sub_c">Proceso</label>
                       <select class="form-control" name="pro">
@@ -85,7 +87,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                       <label for="nom">Sub proceso</label>
                       <input type="text" class="form-control" name="nom" >
                     </div>
-                    <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                    <button type="submit" class="btn btn-primary mr-2">Enviar</button>
                     <button class="btn btn-light">Cancel</button>
                   </form>
                 </div>

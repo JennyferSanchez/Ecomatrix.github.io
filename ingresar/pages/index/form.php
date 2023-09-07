@@ -1,4 +1,5 @@
 <?php
+include("../coneccion/error.php");
 session_start();
 include("../coneccion/coneccion.php");
 if (!isset($_SESSION["user_id"])) {

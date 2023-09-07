@@ -1,5 +1,7 @@
 <?php
+include("../coneccion/error.php");
 session_start();
+
 global $document;
 if (!isset($_SESSION["user_id"])) {
     header("Location: ../login/login.php");
@@ -10,7 +12,7 @@ $user_id = $_SESSION["user_id"];
 $proy_id = $_SESSION["proy_id"];
 
 include("../coneccion/coneccion.php");
-$query = "SELECT s.id id, s.nombre nombre, s.img img FROM sector s INNER JOIN  sector_usu u ON s.id=u.sector  INNER JOIN proyecto p ON p.id= u.id_proy  WHERE p.id= $proy_id   ";
+$query = "SELECT p.id id, p.nombre nombre FROM proceso p INNER JOIN  sector_usu u ON p.id_sector=u.sector WHERE u.id_proy= $proy_id   ";
 $result = mysqli_query($conn, $query);
 
 
@@ -91,6 +93,26 @@ $result3 = mysqli_query($conn, $query3);
                         ?>
                       </select>
                     </div>
+                    <label for="sub_c">Carácter	</label>
+                    <div class="form-group row">
+                        
+                    <div class="col-sm-3">
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input type="radio" class="form-check-input" name="Caracter" id="Caracter1" value="1">
+                            Benéfico
+                        </label>
+                    </div>
+                    </div>
+                    <div class="col-sm-3">
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input type="radio" class="form-check-input" name="Caracter" id="Caracter2" value="-1">
+                            Perjudicial
+                        </label>
+                    </div>
+                    </div>
+                    </div>
                     <fieldset>
                     <legend>Magnitud</legend>
                     <label for="sub_c">intensidad</label>
@@ -129,7 +151,7 @@ $result3 = mysqli_query($conn, $query3);
                     </div>
                     </div>
                     </div>
-                    <label for="sub_c">intencidad</label>
+                    <label for="sub_c">Afectacion</label>
                     <div class="form-group row">
                         
                     <div class="col-sm-3">

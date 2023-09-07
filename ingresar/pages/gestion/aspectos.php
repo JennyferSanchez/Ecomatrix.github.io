@@ -1,6 +1,6 @@
 <?php
 
-
+include("../coneccion/error.php");
 
 
 session_start();
@@ -61,7 +61,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                   <p class="card-description">
                     si no encuentra algun aspecto agregelo
                   </p>
-                  <form class="forms-sample">
+                  <form class="forms-sample" method="POST">
                     <div class="form-group">
                       <label for="sub_c">Sub componente</label>
                       <select class="form-control" id="sub_f">

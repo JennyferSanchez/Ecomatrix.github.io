@@ -1,4 +1,5 @@
 <?php
+include("../coneccion/error.php");
 session_start();
 if (!isset($_SESSION["user_id"])) {
     header("../login/login.php");

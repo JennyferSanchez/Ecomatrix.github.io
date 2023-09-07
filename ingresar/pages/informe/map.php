@@ -1,5 +1,5 @@
 <?php
-
+include("../coneccion/error.php");
 
 
 

@@ -16,28 +16,29 @@ $inf=$_POST['Influencia'];
 $aspecto=$_POST['aspecto'];
 $sub_pro=$_POST['sub_proceso'];
 $impacto=$_POST['impacto'];
+$caracter=$_POST['Caracter'];
 
 
 if($af==1 && $in==1){
-    $magnitud= -1;
+    $magnitud= 1*$caracter;
 }elseif($af==1 && $in==2){
-    $magnitud= -2;
+    $magnitud= 2*$caracter;
 }elseif($af==1 && $in==3){
-    $magnitud= -3;
+    $magnitud= 3*$caracter;
 }elseif($af==2 && $in==1){
-    $magnitud= -4;
+    $magnitud= 4*$caracter;
 }elseif($af==2 && $in==2){
-    $magnitud= -5;
+    $magnitud= 5*$caracter;
 }elseif($af==2 && $in==3){
-    $magnitud= -6;
+    $magnitud= 6*$caracter;
 }elseif($af==3 && $in==1){
-    $magnitud= -7;
+    $magnitud= 7*$caracter;
 }elseif($af==3 && $in==2){
-    $magnitud= -8;
+    $magnitud= 8*$caracter;
 }elseif($af==3 && $in==3){
-    $magnitud= -9;
+    $magnitud= 9*$caracter;
 }elseif($af==4 && $in==3){
-    $magnitud= -10;
+    $magnitud= 10*$caracter;
 }
 
 if($du==1 && $inf==1){
