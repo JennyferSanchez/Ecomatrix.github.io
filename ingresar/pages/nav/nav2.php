@@ -297,7 +297,8 @@
             </a>
             <div class="collapse" id="form-elements">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"><a class="nav-link" href="../informe/map.php">Mapa de calor</a></li>
+                <li class="nav-item"><a class="nav-link" href="../informe/infor_ev.php">Resultados</a></li>
+                <li class="nav-item"><a class="nav-link" href="../informe/mapa.php">Matriz</a></li>
               </ul>
             </div>
           </li>
