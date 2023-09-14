@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $query1 = "SELECT email FROM usuarios WHERE email = '$email'";
     $result1 = mysqli_query($conn, $query1);
 
-    if ($result->num_rows > 0){
+    if ($result1->num_rows > 0){
       $query = "INSERT INTO usuarios ( username, password, email, verified, verification_code) VALUES ('$username', '$password', '$email', 0,   '$verificationCode')";
       $result = mysqli_query($conn, $query);
 
