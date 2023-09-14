@@ -3,10 +3,10 @@ session_start();
 include("../coneccion/coneccion.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $username = $_POST["email"];
+    $email= $_POST["email"];
     $password = $_POST["password"];
 
-    $query = "SELECT id, password FROM usuarios WHERE email = '$username'";
+    $query = "SELECT id, password FROM usuarios WHERE email = '$email'";
     $result = mysqli_query($conn, $query);
 
     if ($result && mysqli_num_rows($result) === 1) {

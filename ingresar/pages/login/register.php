@@ -5,10 +5,10 @@ include("../coneccion/coneccion.php");
 include("enviar_correo.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $username =  $_POST["username"];
-    $password = password_hash($_POST["password"], PASSWORD_BCRYPT);
-    $email = $_POST["email"];
-
+  $username =  $_POST["username"];
+  $password = password_hash($_POST["password"], PASSWORD_BCRYPT);
+  $email = $_POST["email"];
+  if($username== "" && $password== "" && $email== ""){
     // Generar un código de verificación aleatorio
     $verificationCode = mt_rand(100000, 999999);
 
@@ -38,10 +38,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }else{
       $error = "Correo ya registrado resgitra otro.";
     }
-
-    }
-
-    
+  }
+}
 
 ?>
 <!DOCTYPE html>
