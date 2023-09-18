@@ -16,19 +16,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $query2 = "INSERT INTO proyecto ( nombre, id_usuario, descripcion) VALUES ('$nombre', $user_id , '$desc')";
   $result2 = mysqli_query($conn, $query2);
   $proy_id = mysqli_insert_id($conn);
-  while($row = mysqli_fetch_assoc($result)){
-    $id= $row['id'];
-    if($_POST["proceso_".$id]){      
-    $query3 = "INSERT INTO sector_usu (id_proy, sector) VALUES ($proy_id, $id )";
-    $result3 = mysqli_query($conn, $query3);
+  if($nombre!= " " && $desc!= " "){
+    while($row = mysqli_fetch_assoc($result)){
+      $id= $row['id'];
+      if($_POST["proceso_".$id]){      
+      $query3 = "INSERT INTO sector_usu (id_proy, sector) VALUES ($proy_id, $id )";
+      $result3 = mysqli_query($conn, $query3);
+      }
     }
+      if($result3){
+        header("Location: index.php");
+        exit();
+      }else{
+        $error= "no";
+      }
+
+  }else{
+    $error= "Porfavor diligenciar todos los campos";
   }
-    if($result3){
-      header("Location: index.php");
-      exit();
-    }else{
-      $error= "no";
-    }
+  
    
 }
 ?>

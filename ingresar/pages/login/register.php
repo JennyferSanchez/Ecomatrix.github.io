@@ -8,7 +8,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $username =  $_POST["username"];
   $password = password_hash($_POST["password"], PASSWORD_BCRYPT);
   $email = $_POST["email"];
-  if($username!= " " && $password!= " " && $email!= " "){
     // Generar un código de verificación aleatorio
     $verificationCode = mt_rand(100000, 999999);
 
@@ -39,11 +38,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       }
 
     }else{
-      $error = "Correo ya registrado resgitra otro.";
+      $error = "¡Correo ya registrado!- Resgitra otro uno nuevo. ";
     }
-  }else{
-    $error = "llena los campos.";
-  }
 }
 
 ?>
@@ -83,13 +79,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               <form class="pt-3" method="POST" >
 
                 <div class="form-group">
-                  <input type="text" class="form-control form-control-lg" name="username" placeholder="username">
+                  <input type="text" class="form-control form-control-lg" name="username" required placeholder="username">
                 </div>
                 <div class="form-group">
-                  <input type="email" class="form-control form-control-lg" name="email" placeholder="email">
+                  <input type="email" class="form-control form-control-lg" name="email" required placeholder="email">
                 </div>
                 <div class="form-group">
-                  <input type="password" class="form-control form-control-lg" name="password" placeholder="password">
+                  <input type="password" class="form-control form-control-lg" name="password" required placeholder="password">
                 </div>
                 <div class="mb-4">
                 </div>

@@ -19,8 +19,6 @@ $result = mysqli_query($conn, $query);
 
 
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -63,7 +61,7 @@ $result = mysqli_query($conn, $query);
                               $image_blob = $row["img"];
                               $id_img = $row["id"];
                               $nom_img = $row["nombre"];
-                              echo "<a href= 'sub_actividades.php?id=$id_img'><button  class='btn btn-outline-dark'>";
+                              echo "<a href= 'mapa.php?id=$id_img'><button  class='btn btn-outline-dark'>";
                                   echo "<img alt='Imagen' class='imagenes rounded' src='data:png;base64," . base64_encode($image_blob) . "' alt='Imagen'>";                           
                                   echo "<span class='d-inline-block text-left'>";
                                     echo "<small class='font-weight-light d-block'>SECTOR</small>";
@@ -72,34 +70,7 @@ $result = mysqli_query($conn, $query);
                                   echo "</a>";
                             }
                           ?>
-                      </div>
-                      <div class="mt-3">
-                        <button id="btn-abrir-popup"  class="btn-abrir-popup btn btn-primary mr-2 ">Añadir</button>
-                      </div>
-
-
-                      <div class="overlay" id="overlay">
-                        <div class="popup" id="popup">
-                          <a href="#" id="btn-cerrar-popup" class="btn-cerrar-popup"><i class="fas fa-times"></i></a>
-                          <h3>Ingresa tu proceso</h3>
-                          <form action="añadir.php" method="POST">
-                            <div class="">
-                            <div class="form-group">
-                              <input type="text" name="sector" class="form-control" id="exampleInputName1" placeholder="Name">
-                            </div>
-                            <div class="form-group">
-                              <input type="file" name="img[]" class="file-upload-default">
-                              <div class="input-group col-xs-12">
-                                <input type="text" name="img" class="form-control file-upload-info" disabled placeholder="Upload Image">
-                                <span class="input-group-append">
-                                  <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
-                                </span>
-                              </div>
-                            </div>
-
-                            </div>
-                            <input type="submit" class="btn-submit" value="Ingresar">
-                          </form>
+                          </div>
                         </div>
                       </div>
                     </div>

@@ -56,6 +56,22 @@ $proy_id = $_SESSION["proy_id"];
                   </p>
                   <div class="table-responsive">
                   <table>
+                  <?php
+                            while ($row = mysqli_fetch_assoc($result)) {
+                                $query2 = "SELECT s.id id_sub, s.nombre nombre_s FROM sub_proceso s WHERE s.id_pro='{$row['id']}'";
+                                $result2 = mysqli_query($conn, $query2);
+                                echo "<tr>";
+                                echo "<td>";
+                                echo "<div class='c1'>A</div>";
+                                echo "<div class='c2'>B</div>";    
+                                echo "</td>";
+                                echo "</tr>";
+    
+                            }
+    
+                         ?>
+
+
                     <tr>
                         <td>
                             <div class="c1">A</div>
