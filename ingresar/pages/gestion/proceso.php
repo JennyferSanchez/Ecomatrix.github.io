@@ -97,7 +97,6 @@ $result = mysqli_query($conn, $query);
                                 </span>
                               </div>
                             </div>
-
                             </div>
                             <input type="submit" class="btn-submit" value="Ingresar">
                           </form>
@@ -124,13 +123,8 @@ $result = mysqli_query($conn, $query);
     </div>
     <!-- page-body-wrapper ends -->
   </div>
-  <!-- container-scroller -->
-  <!-- plugins:js -->
+
   <script src="../../vendors/js/vendor.bundle.base.js"></script>
-  <!-- endinject -->
-  <!-- Plugin js for this page -->
-  <!-- End plugin js for this page -->
-  <!-- inject:js -->
   <script src="../../js/pop.js"></script>
   <script src="../../js/off-canvas.js"></script>
   <script src="../../js/hoverable-collapse.js"></script>
