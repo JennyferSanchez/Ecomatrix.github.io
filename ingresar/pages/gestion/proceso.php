@@ -81,7 +81,7 @@ $result = mysqli_query($conn, $query);
 
                       <div class="overlay" id="overlay">
                         <div class="popup" id="popup">
-                          <a href="#" id="btn-cerrar-popup" class="btn-cerrar-popup"><i class="fas fa-times"></i></a>
+                          <a href="#" id="btn-cerrar-popup" class="btn-cerrar-popup">x<i class="fas fa-times"></i></a>
                           <h3>Ingresa tu proceso</h3>
                           <form action="añadir.php" method="POST">
                             <div class="">
@@ -123,8 +123,6 @@ $result = mysqli_query($conn, $query);
     </div>
     <!-- page-body-wrapper ends -->
   </div>
-
-  <script src="../../vendors/js/vendor.bundle.base.js"></script>
   <script src="../../js/pop.js"></script>
   <script src="../../js/off-canvas.js"></script>
   <script src="../../js/hoverable-collapse.js"></script>
