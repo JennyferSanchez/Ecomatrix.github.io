@@ -1,3 +1,8 @@
+<?php
+                
+?>
+
+
 <div class="tab-content" id="setting-content">
           <div class="tab-pane fade show active scroll-wrapper" id="todo-section" role="tabpanel" aria-labelledby="todo-section">
             <div class="add-items d-flex px-3 mb-0">
@@ -8,8 +13,11 @@
                 </div>
               </form>
             </div>
-            <div class="list-wrapper px-3">
+            <div class="list-wrapper">
               <ul class="d-flex flex-column-reverse todo-list">
+                <?php
+
+                ?>
                 <li>
                   <div class="form-check">
                     <label class="form-check-label">
@@ -57,21 +65,5 @@
                 </li>
               </ul>
             </div>
-            <h4 class="px-3 text-muted mt-5 font-weight-light mb-0">Events</h4>
-            <div class="events pt-4 px-3">
-              <div class="wrapper d-flex mb-2">
-                <i class="ti-control-record text-primary mr-2"></i>
-                <span>Feb 11 2018</span>
-              </div>
-              <p class="mb-0 font-weight-thin text-gray">Creating component page build a js</p>
-              <p class="text-gray mb-0">The total number of sessions</p>
-            </div>
-            <div class="events pt-4 px-3">
-              <div class="wrapper d-flex mb-2">
-                <i class="ti-control-record text-primary mr-2"></i>
-                <span>Feb 7 2018</span>
-              </div>
-              <p class="mb-0 font-weight-thin text-gray">Meeting with Alisa</p>
-              <p class="text-gray mb-0 ">Call Sarah Graves</p>
-            </div>
+    
           </div>

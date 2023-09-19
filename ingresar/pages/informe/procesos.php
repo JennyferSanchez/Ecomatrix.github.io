@@ -47,14 +47,19 @@ $result = mysqli_query($conn, $query);
       <!-- partial -->
       <div class="main-panel">          
         <div class="content-wrapper">
-          <div class="row">
+              <div class="row">
+                <div class="col-12 col-xl-8 mb-4 mb-xl-0">
+                  <h3 class="font-weight-bold">Matriz de leopold</h3>
+                  <h6 class="font-weight-normal mb-0"> </h6>
+                </div>
+                
+              </div>
             <div class="col-md-12 grid-margin stretch-card">
               <div class="card">
                 <div class="row">
                   <div class="col-md-4">
                     <div class="card-body">
                       <h4 class="card-title">Actividad</h4>
-                      <p class="card-description">Selecciona en la actividad que vas a trabajar</p>
                       <div class="template-demo d-flex mt-2 ">
                           <?php
                             while ($row = mysqli_fetch_assoc($result)) {

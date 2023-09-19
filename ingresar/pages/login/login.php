@@ -57,10 +57,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               <h6 class="font-weight-light">ingresa para empezar.</h6>
               <form class="pt-3" method="POST">
                 <div class="form-group">
-                  <input type="email" class="form-control form-control-lg"  name="email" placeholder="Email">
+                  <input type="email" class="form-control form-control-lg"   required  name="email" placeholder="Email">
                 </div>
                 <div class="form-group">
-                  <input type="password" class="form-control form-control-lg"  name="password" placeholder="Password">
+                  <input type="password" class="form-control form-control-lg"  required name="password" placeholder="Password">
                 </div>
                 <div class="mt-3">
                 <input class="boton btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" type="submit"  >
