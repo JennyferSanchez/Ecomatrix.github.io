@@ -2,35 +2,33 @@
 session_start();
 include("../coneccion/coneccion.php");
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email= $_POST["email"];
-    $password = $_POST["password"];
+if (!isset($_SESSION["user_id"])) {
+    header("Location: login.php");
+    exit();
 
-    $query = "SELECT id, password, verified FROM usuarios WHERE email = '$email'";
+
+}
+
+$user_id = $_SESSION["user_id"];
+
+
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $enteredCode = $_POST["verification_code"];
+
+    $query = "SELECT * FROM usuarios WHERE id = $user_id AND verification_code = '$enteredCode'";
     $result = mysqli_query($conn, $query);
 
-    if ($result && mysqli_num_rows($result) === 1) {
-        $row = mysqli_fetch_assoc($result);
-        $stored_password = $row["password"];
-
-        if (password_verify($password, $stored_password)) {
-            // Contraseña válida, inicio de sesión exitoso
-            $_SESSION["user_id"] = $row["id"];
-            if($row["verified"]== 1){
-              header("Location: ../index/dirigir.php");
-              exit();
-            }else{
-              header("Location: verificar2.php");
-              exit();
-            }
-            
+    if (mysqli_num_rows($result) == 1) {
+        $query = "UPDATE usuarios SET verified = 1 WHERE id = $user_id";
+        $result = mysqli_query($conn, $query);
+        if ($result) {
+            header("Location: ../index/dirigir.php");
         } else {
-            // Contraseña incorrecta
-            $error = "Nombre de usuario o contraseña incorrectos holi.";
+            $error = "Error al verificar el código.";
         }
     } else {
-        // Usuario no encontrado
-        $error = "Nombre de usuario o contraseña incorrectos.";
+        $error = "Código de verificación incorrecto.";
     }
 }
 ?>
@@ -60,22 +58,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <a href="../../../index.html"><img class="logo" src="../../../img/EcoMatrix (1).png" alt="logo"></a>
                 
               </div>
-              <h4>Hola! vamos a empezar</h4>
-              <h6 class="font-weight-light">ingresa para empezar.</h6>
+              <h4>Verifica tu correo</h4>
               <form class="pt-3" method="POST">
                 <div class="form-group">
-                  <input type="email" class="form-control form-control-lg"   required  name="email" placeholder="Email">
-                </div>
-                <div class="form-group">
-                  <input type="password" class="form-control form-control-lg"  required name="password" placeholder="Password">
+                  <input type="text" class="form-control form-control-lg"  name="verification_code" placeholder="Codigo" required>
                 </div>
                 <div class="mt-3">
-                <input class="boton btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" type="submit"  >
+                    <input class="boton btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" type="submit" value="Verificar" >
                 </div>
-                
-                <div class="text-center mt-4 font-weight-light">
-                  Don't have an account? <a href="register.html" class="text-primary">Create</a>
+                <div class="mt-3">
+                    <a class="boton btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" href='codigo.php' >volver a enviar</a>
                 </div>
+
               </form>
               <?php
                   if (isset($error)) {
@@ -89,11 +83,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       </div>
     </div>
   </div>
+
   <script src="../../vendors/js/vendor.bundle.base.js"></script>
   <script src="../../js/off-canvas.js"></script>
   <script src="../../js/hoverable-collapse.js"></script>
   <script src="../../js/template.js"></script>
   <script src="../../js/settings.js"></script>
   <script src="../../js/todolist.js"></script>
+
 </body>
+
 </html>
+
