@@ -13756,6 +13756,10 @@ input[type="button"].btn-block {
   border-radius: calc(0.25rem - 1px);
 }
 
+.no-subrayado {
+  text-decoration: none !important;
+}
+
 .card-img,
 .card-img-top,
 .card-img-bottom {

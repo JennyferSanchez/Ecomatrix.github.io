@@ -58,7 +58,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <a href="../../../index.html"><img class="logo" src="../../../img/EcoMatrix (1).png" alt="logo"></a>
                 
               </div>
-              <h4>Verifica tu correo</h4>
+              <h4>Antes de ingresar verifica tu correo</h4>
               <form class="pt-3" method="POST">
                 <div class="form-group">
                   <input type="text" class="form-control form-control-lg"  name="verification_code" placeholder="Codigo" required>

@@ -32,6 +32,7 @@ $result = mysqli_query($conn, $query);
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <link rel="stylesheet" href="../../vendors/feather/feather.css">
   <link rel="stylesheet" href="../../vendors/ti-icons/css/themify-icons.css">
+  <link rel="stylesheet" href="../../vendors/mdi/css/materialdesignicons.min.css">
   <link rel="stylesheet" href="../../vendors/css/vendor.bundle.base.css">
   <title>EcoMatrix</title>
   <link rel="stylesheet" href="../../vendors/select2/select2.min.css">
@@ -39,6 +40,14 @@ $result = mysqli_query($conn, $query);
   <link rel="stylesheet" href="../../css/vertical-layout-light/style.css">
   <link rel="shortcut icon" href="../../../img/logo_eco.ico" />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <style>
+        /* Agrega estilos personalizados para controlar la orientación en dispositivos móviles */
+        @media (max-width: 768px) {
+            .div-horizontal-vertical {
+                flex-direction: column; /* Cambia la dirección de los elementos a vertical */
+            }
+        }
+    </style>
 
 </head>
 
@@ -58,7 +67,7 @@ $result = mysqli_query($conn, $query);
                     <div class="card-body">
                       <h4 class="card-title">Actividad</h4>
                       <p class="card-description">Selecciona en la actividad que vas a trabajar</p>
-                      <div class="template-demo d-flex mt-2 ">
+                      <div class="template-demo d-flex div-horizontal-vertical ">
                           <?php
                             while ($row = mysqli_fetch_assoc($result)) {
                               $image_blob = $row["img"];
@@ -86,10 +95,10 @@ $result = mysqli_query($conn, $query);
                           <form action="añadir.php" method="POST">
                             <div class="">
                             <div class="form-group">
-                              <input type="text" name="sector" class="form-control" id="exampleInputName1" placeholder="Name">
+                              <input type="text" required name="sector" class="form-control" id="exampleInputName1" placeholder="Name">
                             </div>
                             <div class="form-group">
-                              <input type="file" name="img[]" class="file-upload-default">
+                              <input type="file" required name="img[]" class="file-upload-default">
                               <div class="input-group col-xs-12">
                                 <input type="text" name="img" class="form-control file-upload-info" disabled placeholder="Upload Image">
                                 <span class="input-group-append">
@@ -123,6 +132,9 @@ $result = mysqli_query($conn, $query);
     </div>
     <!-- page-body-wrapper ends -->
   </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <script src="../../js/pop.js"></script>
   <script src="../../js/off-canvas.js"></script>
   <script src="../../js/hoverable-collapse.js"></script>

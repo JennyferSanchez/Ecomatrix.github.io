@@ -1,28 +1,28 @@
 <?php
-include("../coneccion/error.php");
-
-
-
 session_start();
 include("../coneccion/coneccion.php");
 include("../index/variable.php");
 $user_id = $_SESSION["user_id"];
 $proy_id = $_SESSION["proy_id"];
-$query = "SELECT r.id, r.id_proy, a.nombre aspecto,  s.nombre id_subproseso, r.magnitud, r.Importancia, r.ma, r.im FROM registro r INNER JOIN aspectos a ON a.id=r.aspecto INNER JOIN sub_proceso s ON s.id=r.id_subproseso WHERE r.id_proy= $proy_id ";
-$result = mysqli_query($conn, $query);
-$user_id = $_SESSION["user_id"];
-$proy_id = $_SESSION["proy_id"];
+
+
 
 if (isset($_GET['id'])) {
-  $_SESSION["proceso"] = $_GET['id'];
-  $btn = $_SESSION["proceso"];
-  $query1 = "SELECT id, nombre FROM proceso  WHERE id_sector= $btn   ";
-  $result1 = mysqli_query($conn, $query1);
+  $_SESSION["sector"] = $_GET['id'];
 
-} else {
-  $query1 = "SELECT r.id, r.id_proy, a.nombre aspecto,  s.nombre id_subproseso, r.magnitud, r.Importancia, r.ma, r.im FROM registro r INNER JOIN aspectos a ON a.id=r.aspecto INNER JOIN sub_proceso s ON s.id=r.id_subproseso WHERE r.id_proy= $proy_id ";
-  $result1 = mysqli_query($conn, $query1);
 }
+
+if (isset($_GET['proc'])) {
+  $_SESSION["proceso"] = $_GET['proc'];
+
+}else{
+  $_SESSION["proceso"] = 1;
+}
+$btn= $_SESSION['sector'];
+$proceso = $_SESSION["proceso"];
+$query1 = "SELECT id, nombre FROM proceso  WHERE id_sector= $btn ";
+$result1 = mysqli_query($conn, $query1);
+
 
 
 
@@ -45,6 +45,7 @@ if (isset($_GET['id'])) {
   <link rel="stylesheet" href="../../vendors/feather/feather.css">
   <link rel="stylesheet" href="../../vendors/ti-icons/css/themify-icons.css">
   <link rel="stylesheet" href="../../vendors/css/vendor.bundle.base.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link rel="stylesheet" href="../../vendors/datatables.net-bs4/dataTables.bootstrap4.css">
   <link rel="stylesheet" href="../../vendors/ti-icons/css/themify-icons.css">
   <link rel="stylesheet" type="text/css" href="../../js/select.dataTables.min.css">
@@ -74,7 +75,7 @@ if (isset($_GET['id'])) {
                       while ($row = mysqli_fetch_assoc($result1)) {
                               $id_img = $row["id"];
                               $nom_img = $row["nombre"];
-                              echo "<a class='dropdown-item' href='mapa.php?id=$id_img'>$nom_img</a>";
+                              echo "<a class='dropdown-item' href='mapa.php?proc=$id_img'>$nom_img</a>";
                             }
                           ?>
                     </div>
@@ -95,49 +96,58 @@ if (isset($_GET['id'])) {
                   <div class="table-responsive">
                   <table>
                   <?php
-                            while ($row = mysqli_fetch_assoc($result)) {
-                                $query2 = "SELECT s.id id_sub, s.nombre nombre_s FROM sub_proceso s WHERE s.id_pro='{$row['id']}'";
-                                $result2 = mysqli_query($conn, $query2);
-                                echo "<tr>";
-                                echo "<td>";
-                                echo "<div class='c1'>A</div>";
-                                echo "<div class='c2'>B</div>";    
-                                echo "</td>";
-                                echo "</tr>";
+                    
+                    $sql = "SELECT id, nombre FROM aspectos";
+                    $result3 = mysqli_query($conn, $sql);
+
+                    while ($row1 = mysqli_fetch_assoc($result3)) {
+                      $query2 = "SELECT id id_sub, nombre nombre_s FROM sub_proceso  WHERE id_pro= $proceso ";
+                      $result2 = mysqli_query($conn, $query2);
+                      $asp= $row1['id'];
+                      $asp_n= $row1['nombre'];
+                      echo "<tr>";
+                      while ($row = mysqli_fetch_assoc($result2)) {
+                        $sub= $row['id_sub'];
+                        $sub_n= $row['nombre_s'];
+                        $query4 = "SELECT id, Importancia,  magnitud  FROM registro r WHERE id_proy= $proy_id and aspecto=$asp and id_subproseso= $sub";
+                        $result4 = mysqli_query($conn, $query4);
+                        $row2= mysqli_fetch_assoc($result4);
+                        
+                        
+                        if(!empty($row2['Importancia'])  && !empty($row2['magnitud'])){
+                          $imp= $row2['Importancia'];
+                          $mag= $row2['magnitud'];
+                          if ($mag< 0) {
+                            $color= "#OAFB34";
+                        } else {
+                          $color= "#ef9898";
+                        }
+                        }else{
+                          $color= "#FFFFFF";
+                          $imp= 0;
+                          $mag= 0;
+                        }
+
+
+                        
+                        
+                        echo "<td style='background-color:$color; width: 50px; '>";
+                        echo "<a class='text-decoration-none' style='color: black'  href='table.php' title='$asp_n - $sub_n'>";
+                        echo "<div>";
+                        echo "<div style='background-color:$color;' class='c1'>$mag</div>";
+                        echo "<div class='c2'>$imp</div>"; 
+                        echo "</div>";   
+                        echo "</a>";
+                        echo "</td>";
+                        
+
+                        
+                                
     
                             }
-    
-                         ?>
-
-
-                    <tr>
-                        <td>
-                            <div class="c1">A</div>
-                            <div class="c2">B</div>    
-                        </td>
-                        <td>
-                            <div class="c1">C</div>
-                            <div class="c2">D</div>    
-                        </td>
-                        <td>
-                            <div class="c1">E</div>
-                            <div class="c2">F</div>    
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="c1">G</div>
-                            <div class="c2">H</div>    
-                        </td>
-                        <td>
-                            <div class="c1">I</div>
-                            <div class="c2">J</div>    
-                        </td>
-                        <td>
-                            <div class="c1">K</div>
-                            <div class="c2">F</div>    
-                        </td>
-                    </tr>           
+                      echo "</tr>";
+                    }
+                    ?>           
                   </table>
                   </div>
                 </div>

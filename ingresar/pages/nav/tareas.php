@@ -22,7 +22,7 @@
                   <div class="form-check">
                     <label class="form-check-label">
                       <input class="checkbox" type="checkbox">
-                      Team review meeting at 3.00 PM
+                      Reunion a las 3:00 pm
                     </label>
                   </div>
                   <i class="remove ti-close"></i>
@@ -31,7 +31,7 @@
                   <div class="form-check">
                     <label class="form-check-label">
                       <input class="checkbox" type="checkbox">
-                      Prepare for presentation
+                      preparacion para presentacion
                     </label>
                   </div>
                   <i class="remove ti-close"></i>
@@ -40,7 +40,7 @@
                   <div class="form-check">
                     <label class="form-check-label">
                       <input class="checkbox" type="checkbox">
-                      Resolve all the low priority tickets due today
+                      Resolver impactos 
                     </label>
                   </div>
                   <i class="remove ti-close"></i>
@@ -49,7 +49,7 @@
                   <div class="form-check">
                     <label class="form-check-label">
                       <input class="checkbox" type="checkbox" checked>
-                      Schedule meeting for next week
+                      crear cronogram de reunion de esta semana
                     </label>
                   </div>
                   <i class="remove ti-close"></i>
@@ -58,7 +58,8 @@
                   <div class="form-check">
                     <label class="form-check-label">
                       <input class="checkbox" type="checkbox" checked>
-                      Project review
+                      revisar proyecto
+                      
                     </label>
                   </div>
                   <i class="remove ti-close"></i>

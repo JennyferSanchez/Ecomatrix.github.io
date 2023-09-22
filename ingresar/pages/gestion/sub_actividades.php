@@ -65,7 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       <div class="main-panel">        
         <div class="content-wrapper">
           <div class="row">
-            <div class="col-md-4 grid-margin stretch-card">
+            <div class="col-md-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
                   <h4 class="card-title">Procesos</h4>
@@ -93,65 +93,47 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
               </div>
             </div>
+            </div>
             <?php
-                            while ($row = mysqli_fetch_assoc($result)) {
-                                echo "<li class=' list-inline-item mb-4'>";
-                                echo "<div class='card'>";
-                                echo "<div class='card-body'>";
-                                echo "<h4 class='card-title'>{$row['nombre']} </h4>";
-                                echo "<p class='card-description'> </p>";
-                                echo "<div class='table-responsive'>";
-                                echo "<table class='table'>";
-                                $query2 = "SELECT s.id id_sub, s.nombre nombre_s FROM sub_proceso s WHERE s.id_pro='{$row['id']}'";
-                                $result2 = mysqli_query($conn, $query2);
-                                echo "<thead>";
+              while ($row = mysqli_fetch_assoc($result)) {
+                echo "<div class='row'>";
+                  echo "<div class='col-md-12 grid-margin stretch-card'>";
+                    echo "<div class='card'>";
+                      echo "<div class='card-body'>";
+                        echo "<h4 class='card-title'>{$row['nombre']} </h4>";
+                        echo "<div class='table-responsive'>";
+                          echo "<table class='table'>";
+                            $query2 = "SELECT s.id id_sub, s.nombre nombre_s FROM sub_proceso s WHERE s.id_pro='{$row['id']}'";
+                            $result2 = mysqli_query($conn, $query2);
+                            echo "<thead>";
                                 echo "<tr>";
-                                echo "<th>ID</th>";
-                                echo "<th>Nombre</th>";
+                                  echo "<th>ID</th>";
+                                  echo "<th>Nombre</th>";
                                 echo "</tr>";
-                                echo "</thead>";
-
-                                while ($row = mysqli_fetch_assoc($result2)) {
-                                        echo "<tr>";
-                                        echo "<td>{$row['id_sub']}</td>";
-                                        echo "<td>{$row['nombre_s']}</td>";
-                                        echo "</tr>";
-                                    }
-
-                                echo "</tbody>";
-                                echo "</table>";    
-                        echo "</li>";
-    
+                            echo "</thead>";
+                            while ($row = mysqli_fetch_assoc($result2)) {
+                              echo "<tbody>";
+                                echo "<tr>";
+                                  echo "<td>{$row['id_sub']}</td>";
+                                  echo "<td>{$row['nombre_s']}</td>";
+                                echo "</tr>";
+                              echo "</tbody>"; 
                             }
-    
-                         ?>
-                         </ul>
-              
-                  </div>
-                </div>
-              </div>
-            </div>
-   
-    
+                          echo "</table>";    
+                        echo "</div>";
+                      echo "</div>";
+                    echo "</div>";
+                  echo "</div>";
+                echo "</div>";
+              }
+            ?>
 
-                        
-            </div>
-          </div>
-        </div>
 
-        <!-- content-wrapper ends -->
-        <!-- partial:../../partials/_footer.html -->
-        <footer class="footer">
-          <div class="d-sm-flex justify-content-center justify-content-sm-between">
-            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2021.  Premium <a href="https://www.bootstrapdash.com/" target="_blank">Bootstrap admin template</a> from BootstrapDash. All rights reserved.</span>
-            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i class="ti-heart text-danger ml-1"></i></span>
-          </div>
-        </footer>
         <!-- partial -->
-      </div>
-      <!-- main-panel ends -->
+
     </div>
     <!-- page-body-wrapper ends -->
+  </div>
   </div>
   <!-- container-scroller -->
   <!-- plugins:js -->
